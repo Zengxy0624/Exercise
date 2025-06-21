@@ -15,7 +15,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 batch_size =512 #512
 num_workers = 0   # 对于Windows用户，这里应设置为0，否则会出现多线程错误
 lr = 1e-4
-epochs = 300
+epochs = 10
 
 # 首先设置数据变换
 from torchvision import transforms
@@ -141,7 +141,7 @@ for epoch in range(1, epochs+1):
     train(epoch)
     val(epoch)
 
-torch.save(model, "FashionModel500.pth")
+torch.save(model, "FashionModel10.pth")
 # model = torch.load("FashionModel.pth")
 
 # 绘制损失曲线图
