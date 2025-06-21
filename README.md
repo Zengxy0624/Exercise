@@ -1,4 +1,4 @@
-# experiment
+# Experiment
 ## Introduction
 
 This is my GitHub repository for exploring and learning PyTorch and deep learning. Here, I will document my learning process, experimental results, and related projects.
