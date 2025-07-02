@@ -6,6 +6,10 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
+import torchvision.models as models
+from torchinfo import summary
+from torch.utils.tensorboard import SummaryWriter
+
 
 # 配置GPU，这里有两种方式
 ## 使用os.environ
@@ -16,6 +20,7 @@ batch_size =512 #512
 num_workers = 0   # 对于Windows用户，这里应设置为0，否则会出现多线程错误
 lr = 1e-4
 epochs = 10
+# writer = SummaryWriter('./runs')
 
 # 首先设置数据变换
 from torchvision import transforms
@@ -49,8 +54,8 @@ class FMDataset(Dataset):
         label = torch.tensor(label, dtype=torch.long)
         return image, label
 
-train_df = pd.read_csv("./FashionMNIST/fashion-mnist_train.csv")
-test_df = pd.read_csv("./FashionMNIST/fashion-mnist_test.csv")
+train_df = pd.read_csv("FashionMNIST/fashion-mnist_train.csv")
+test_df = pd.read_csv("FashionMNIST/fashion-mnist_test.csv")
 train_data = FMDataset(train_df, data_transform)
 test_data = FMDataset(test_df, data_transform)
 
@@ -166,3 +171,4 @@ plt.grid(True)
 
 plt.tight_layout()
 plt.show()
+summary(model, (batch_size, 3, 28, 28)) # 1：batch_size 3:图片的通道数 224: 图片的高宽
