@@ -8,7 +8,6 @@ print('观测范围 = {} ~ {}'.format(env.observation_space.low,
                                   env.observation_space.high))
 print('动作数 = {}'.format(env.action_space.n))
 
-
 class SimpleAgent:
     def __init__(self, env):
         pass
